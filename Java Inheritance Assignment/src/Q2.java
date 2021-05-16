@@ -16,7 +16,7 @@ class Member {
 	private int age;
 	private String phoneNumber;
 	private int salary;
-	private String address;
+	private Address address;
 	
 	
 	public void setName(String name) {
@@ -35,7 +35,7 @@ class Member {
 		this.salary = salary;
 	}  
 	
-	public void setAddress(String address) {
+	public void setAddress(Address address) {
 		this.address = address;
 	}  
 	
@@ -57,7 +57,7 @@ class Member {
 	}
 	
 	public String getAddress() {
-		return address;
+		return address.city + " , "+ address.country + " , " + address.state;
 	}
 	
 	
@@ -78,6 +78,18 @@ class Employee extends Member{
 	}
 }
 
+class Address{
+	String city;
+	String country;
+	String state;
+	
+	Address(String city, String country, String state){
+		this.city = city;
+		this.country = country;
+		this.state = state;
+	}
+}
+
 class Manager extends Member{
 	private String department = "Software Development";
 	
@@ -93,25 +105,28 @@ class Manager extends Member{
 public class Q2 {
 
 	public static void main(String[] args) {
+		
+		Address empAddress = new Address("Kasoa", "Ghana", "Amanfrom");
+		Address mngAddress = new Address("Accra", "Ghana", "Dansoman");
 		Employee emp = new Employee();
 		emp.setName("Leonard");
 		emp.setAge(23);
-		emp.setAddress("Kasoa");
+		emp.setAddress(empAddress);
 		emp.setphoneNumber("0244567345");
 		emp.setSalary(200);
 		
-		System.out.print("Employee's name is: "+ emp.getName() + " Age is: " + emp.getAge()+ "Address is: "+ emp.getAddress()+
+		System.out.print("Employee's name is: "+ emp.getName() + " Age is: " + emp.getAge()+ " Address is: "+ emp.getAddress()+
 				" Phone Number is: "+ emp.getphoneNumber() + " Specialization is: "+emp.getSpecialization());
 		emp.printSalary();
 		
 		Manager mng = new Manager();
 		mng.setName("Abigail");
 		mng.setAge(20);
-		mng.setAddress("Accra");
+		mng.setAddress(mngAddress);
 		mng.setphoneNumber("0245786567");
 		mng.setSalary(2000);
 		
-		System.out.print("Employee's name is: "+ mng.getName() + " Age is: " + mng.getAge() + " Address is: "+mng.getAddress()+
+		System.out.print("Manager's name is: "+ mng.getName() + " Age is: " + mng.getAge() + " Address is: "+mng.getAddress()+
 				" Phone Number is: "+ mng.getphoneNumber() + " Specialization is: "+mng.getDepartment());
 		mng.printSalary();
 	}
